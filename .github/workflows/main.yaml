@@ -66,11 +66,11 @@ jobs:
 
       - name: Provision ephemeral runner
         run: |
-          testkube install runner github-action-runner-${{ github.run_id }} --create --env sonali-srivastava-personal-env --namespace testkube --floating
+          testkube install runner github-action-runner-${{ github.run_id }} --create --env paris --namespace testkube --floating
 
       - name: Run Test
         run: |
-           testkube run testworkflow curl-nginx-app \
+           testkube run testworkflow pytest-junit \
            -f \
            --config url=http://nginx-service.default.svc.cluster.local \
            --target name=github-action-runner-${{ github.run_id }} \
